@@ -8,7 +8,6 @@ void draw() {
 }
 
 
-
 boolean hitEdge(PVector position) {
   // TODO: implement this.
   return false;
