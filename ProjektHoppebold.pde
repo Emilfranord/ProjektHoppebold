@@ -1,5 +1,7 @@
 void backgroundAlt() {
   background(0, 204, 0);
+  tegnBlomster();
+  rect(width * 0.95, 0, width * 0.05,  height * 0.05); 
 }
 
 void blomst(int x, int y) {
@@ -54,7 +56,6 @@ void setup() {
 }
 void draw() {
   backgroundAlt();
-  tegnBlomster();
   for (int i = 0; i < Bolde.length; i++) {
     Bolde[i].applyForce(new PVector(-0.3, 0));
     Bolde[i].applyForce(new PVector(+0, 1));
@@ -64,6 +65,13 @@ void draw() {
   }
 }
 
+void mousePressed() {
+  if (mouseX < width * 0.95 && mouseY > height * 0.05) {
+    for (int i = 0; i < Bolde.length; i++) {
+      Bolde [i] = new Ball(new PVector(i * 300 + 300, i * 50 + 50));
+    }
+  }
+}
 
 class Ball {
   PVector position;
