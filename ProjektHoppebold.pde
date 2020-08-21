@@ -57,7 +57,7 @@ void draw() {
   tegnBlomster();
   for (int i = 0; i < Bolde.length; i++) {
     Bolde[i].applyForce(new PVector(-0.3, 0));
-    Bolde[i].applyForce(new PVector(+0,1));
+    Bolde[i].applyForce(new PVector(+0, 1));
     Bolde[i].bounceEdge();
     Bolde [i].update();
     Bolde [i].render();
@@ -84,9 +84,8 @@ class Ball {
   }
 
 
-  Ball(PVector pos){
-    this(pos, new PVector(0,0), new PVector(0,0), #000000);
-    
+  Ball(PVector pos) {
+    this(pos, new PVector(0, 0), new PVector(0, 0), #000000);
   }
 
   void render() {
@@ -105,15 +104,21 @@ class Ball {
   }
 
   void bounceEdge() {  
-    if ((position.x > width) || (position.x < 0)) {
-      velocity.x = velocity.x * -1;
-    } 
-    if ((position.y > height) || (position.y < 0)) { 
-      velocity.y = velocity.y * -1;
+    if (position.x > width) {
+      position.x = width;
+      velocity.x *= -1;
+    } else if (position.x < 0) {
+      velocity.x *= -1;
+      position.x = 0;
+    }
+    if (position.y > height) {
+      velocity.y *= -1;
+      position.y = height;
     }
   }
 
   void moveToMouse() {
+
     // TODO: implement this.
   }
 
