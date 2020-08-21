@@ -41,11 +41,15 @@ class Ball {
   color filling; // color is protected :(
 
   Ball() {
-    // TODO: implement this.
+   this(new PVector (300, 400), new PVector (3.5, 0), new PVector(), #FFFFBB);
   }
 
-  Ball(PVector pos, PVector vel, PVector acc) {
-    // TODO: implement this.
+  Ball(PVector pos, PVector vel, PVector acc, color col) {
+    position = pos;
+    velocity = vel;
+    acceleration = acc;
+    filling = col;
+    
   }
 
   void render() {
