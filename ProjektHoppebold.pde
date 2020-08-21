@@ -5,34 +5,22 @@ Ball[] Bolde;
 
 
 void setup() {
+  size(700, 400);
   Bolde = new Ball[3];
-    for (int i = 0; i < Bolde.length; i++) {
+  for (int i = 0; i < Bolde.length; i++) {
     Bolde [i] = new Ball();
   }
 }
 
 void draw() {
- for (int i = 0; i < Bolde.length; i++) {
-    Bolde[i].applyForce(new PVector(+2,0));
+  for (int i = 0; i < Bolde.length; i++) {
+    Bolde[i].applyForce(new PVector(-2, 0));
+    Bolde[i].bounceEdge();
     Bolde [i].update();
     Bolde [i].render();
-
   }
 }
 
-
-boolean hitEdge (PVector position) {
-  if (position.x > width) {
-    return true;
-  }
-  if (position.x < 0) {
-    return true;
-  }
-  if (position.y > height) {
-    return true;
-  }
-  return false;
-}
 
 class Ball {
   PVector position;
@@ -41,7 +29,7 @@ class Ball {
   color filling; // color is protected :(
 
   Ball() {
-   this(new PVector (300, 400), new PVector (3.5, 0), new PVector(), #FFFFBB);
+    this(new PVector (100, 100), new PVector (3.5, 0), new PVector(), #00FF00);
   }
 
   Ball(PVector pos, PVector vel, PVector acc, color col) {
@@ -49,17 +37,30 @@ class Ball {
     velocity = vel;
     acceleration = acc;
     filling = col;
-    
   }
 
   void render() {
-    // TODO: implement this.
+    fill(filling);
+    ellipse(position.x, position.y, 35, 35);
+
+
+
+
   }
 
   void update() {
     velocity.add(acceleration);
     position.add(velocity);
     acceleration.mult(0);
+  }
+
+  void bounceEdge() {  
+    if ((position.x > width) || (position.x < 0)) {
+      velocity.x = velocity.x * -1;
+    } 
+    if ((position.y > height) || (position.y < 0)) { 
+      velocity.y = velocity.y * -1;
+    }
   }
 
   void moveToMouse() {
