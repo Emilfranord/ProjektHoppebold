@@ -1,6 +1,5 @@
 void backgroundAlt() {
   background(0, 204, 0);
-
 }
 
 void blomst(int x, int y) {
@@ -50,15 +49,15 @@ void setup() {
   size(700, 400);
   Bolde = new Ball[3];
   for (int i = 0; i < Bolde.length; i++) {
-    Bolde [i] = new Ball();
+    Bolde [i] = new Ball(new PVector(i * 300 + 300, i * 50 + 50));
   }
 }
-
 void draw() {
-   backgroundAlt();
+  backgroundAlt();
   tegnBlomster();
   for (int i = 0; i < Bolde.length; i++) {
-    Bolde[i].applyForce(new PVector(-2, 0));
+    Bolde[i].applyForce(new PVector(-0.3, 0));
+    Bolde[i].applyForce(new PVector(+0,1));
     Bolde[i].bounceEdge();
     Bolde [i].update();
     Bolde [i].render();
@@ -71,6 +70,7 @@ class Ball {
   PVector velocity;
   PVector acceleration;
   color filling; // color is protected :(
+  float hue = 0;
 
   Ball() {
     this(new PVector (100, 100), new PVector (3.5, 0), new PVector(), #00FF00);
@@ -83,13 +83,19 @@ class Ball {
     filling = col;
   }
 
+
+  Ball(PVector pos){
+    this(pos, new PVector(0,0), new PVector(0,0), #000000);
+    
+  }
+
   void render() {
-    fill(filling);
+    colorMode(HSB);
+    if (hue >= 255)  hue=0;  
+    else  hue++;
+    fill(hue, 255, 255);
     ellipse(position.x, position.y, 35, 35);
-
-
-
-
+    colorMode(RGB);
   }
 
   void update() {
