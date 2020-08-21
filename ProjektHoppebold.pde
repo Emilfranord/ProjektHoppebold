@@ -1,10 +1,23 @@
 void backgroundAlt() {
 }
 
+Ball[] Bolde;
+
+
 void setup() {
+  Bolde = new Ball[3];
+    for (int i = 0; i < Bolde.length; i++) {
+    Bolde [i] = new Ball();
+  }
 }
 
 void draw() {
+ for (int i = 0; i < Bolde.length; i++) {
+    Bolde[i].applyForce(new PVector(+2,0));
+    Bolde [i].update();
+    Bolde [i].render();
+
+  }
 }
 
 
@@ -49,6 +62,7 @@ class Ball {
     // TODO: implement this.
   }
 
-  void applyForce() {
+  void applyForce(PVector force) {
+    acceleration.add(force);
   }
 }
