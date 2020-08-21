@@ -24,7 +24,7 @@ boolean hitEdge (PVector position) {
 class Ball {
   PVector position;
   PVector velocity;
-  PVector accleration;
+  PVector acceleration;
   color filling; // color is protected :(
 
   Ball() {
@@ -40,7 +40,9 @@ class Ball {
   }
 
   void update() {
-    // TODO: implement this.
+    velocity.add(acceleration);
+    position.add(velocity);
+    acceleration.mult(0);
   }
 
   void moveToMouse() {
