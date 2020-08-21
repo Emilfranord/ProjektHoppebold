@@ -42,10 +42,6 @@ class Ball {
   void render() {
     fill(filling);
     ellipse(position.x, position.y, 35, 35);
-
-
-
-
   }
 
   void update() {
@@ -55,15 +51,21 @@ class Ball {
   }
 
   void bounceEdge() {  
-    if ((position.x > width) || (position.x < 0)) {
-      velocity.x = velocity.x * -1;
-    } 
-    if ((position.y > height) || (position.y < 0)) { 
-      velocity.y = velocity.y * -1;
+  if (position.x > width) {
+      position.x = width;
+      velocity.x *= -1;
+    } else if (position.x < 0) {
+      velocity.x *= -1;
+      position.x = 0;
     }
+     if (position.y > height) {
+      velocity.y *= -1;
+      position.y = height;
+     }
   }
 
   void moveToMouse() {
+
     // TODO: implement this.
   }
 
